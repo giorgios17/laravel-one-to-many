@@ -49,19 +49,7 @@ class PostController extends Controller
         $postData = $request->all();
         $newPost = new Post();
         $newPost->fill($postData);
-
-        $slug = Str::slug($newPost->title);
-        $otherSlug = $slug;
-        $postExist = Post::where('slug', $slug)->first();
-        $counter = 1;
-        while($postExist){
-            $otherSlug = $slug . '_' . $counter;
-            $counter++;
-            $postExist = Post::where('slug', $otherSlug)->first();
-        }
-
-
-        $newPost->slug = $otherSlug;
+        $newPost->slug = Post::uniqueSlug($newPost->title);
         $newPost->save();
         return redirect()->route('admin.posts.index');
     }

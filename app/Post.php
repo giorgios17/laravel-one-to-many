@@ -3,9 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
     //
     protected $fillable = ['title', 'content', 'slug'];
+
+    public static function uniqueSlug($title){
+        $slug = Str::slug($title);
+        $otherSlug = $slug;
+        $postExist = Post::where('slug', $slug)->first();
+        $counter = 1;
+        while($postExist){
+            $otherSlug = $slug . '_' . $counter;
+            $counter++;
+            $postExist = Post::where('slug', $otherSlug)->first();
+        }
+        return $otherSlug;
+    }
 }
