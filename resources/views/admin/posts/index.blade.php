@@ -13,7 +13,14 @@
                 <tr>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->slug }}</td>
-                    <td><a href="{{ route('admin.posts.show', $post->id) }}"><i class="fas fa-search"></i></a></td>
+                    <td>
+                        <a href="{{ route('admin.posts.show', $post->id) }}">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a href="{{ route('admin.posts.edit', $post->id) }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </table>
