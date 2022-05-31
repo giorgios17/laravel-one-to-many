@@ -15,11 +15,19 @@
                     <td>{{ $post->slug }}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id) }}">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-search fa-2xl"></i>
                         </a>
                         <a href="{{ route('admin.posts.edit', $post->id) }}">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-edit fa-2xl mx-3"></i>
                         </a>
+                        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post" class=" d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type='submit' onclick="return confirm('Sicuro di voler cancellare questo post?')"
+                                type="submit" value="" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
