@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 use App\Post;
 
 class PostController extends Controller
@@ -59,6 +59,8 @@ class PostController extends Controller
             $counter++;
             $postExist = Post::where('slug', $otherSlug)->first();
         }
+
+
         $newPost->slug = $otherSlug;
         $newPost->save();
         return redirect()->route('admin.posts.index');
@@ -73,6 +75,8 @@ class PostController extends Controller
     public function show($id)
     {
         //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -98,10 +102,15 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'title'=> 'required|max:255',
+            'content'=> 'required'
+        ]);
+
         $post = Post::findOrFail($id);
         $data = $request->all();
         $post->update($data);
-        return redirect()->route('admin.posts.show', $post->id);
+        return redirect()->route('admin.posts.index', $post->id);
     }
 
     /**
