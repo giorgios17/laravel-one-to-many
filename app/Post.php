@@ -10,6 +10,11 @@ class Post extends Model
     //
     protected $fillable = ['title', 'content', 'slug'];
 
+    public function category(){
+        return $this->belongsTo('App\Category');
+    }
+
+
     // FUNZIONE CHE RITORNA UNO SLUG UNICO
     public static function uniqueSlug($title){
         $slug = Str::slug($title);
