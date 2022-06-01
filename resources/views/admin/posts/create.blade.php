@@ -18,13 +18,15 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <select class="form-control">
-
+        <select class="form-control" name="category_id">
             <option>--Seleziona genere--</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
+        @error('category_id')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
         <input class="btn btn-primary mt-5" type="submit">
     </form>
 @endsection
