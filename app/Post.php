@@ -10,6 +10,7 @@ class Post extends Model
     //
     protected $fillable = ['title', 'content', 'slug'];
 
+    // FUNZIONE CHE RITORNA UNO SLUG UNICO
     public static function uniqueSlug($title){
         $slug = Str::slug($title);
         $otherSlug = $slug;

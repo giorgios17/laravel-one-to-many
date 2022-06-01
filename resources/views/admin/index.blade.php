@@ -15,6 +15,7 @@
                         @endif
 
                         {{ __('You are logged in!') }}
+                        {{-- LINK ALLA DASHBOARD --}}
                         <a href="{{ route('admin.posts.index') }}">Vai alla dashboard</a>
                     </div>
                 </div>
