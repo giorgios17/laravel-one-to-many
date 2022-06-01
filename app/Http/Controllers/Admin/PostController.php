@@ -97,6 +97,7 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
         $data = $request->all();
+        $post->slug = Post::uniqueSlug($post->title);
         $post->update($data);
         return redirect()->route('admin.posts.index', $post->id);
     }
