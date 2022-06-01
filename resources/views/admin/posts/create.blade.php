@@ -19,7 +19,7 @@
             @enderror
         </div>
         <select class="form-control" name="category_id">
-            <option>--Seleziona genere--</option>
+            <option value="">--Seleziona genere--</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
