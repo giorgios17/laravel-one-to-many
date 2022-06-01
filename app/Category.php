@@ -9,7 +9,7 @@ class Category extends Model
     //
     protected $table = 'categories';
 
-    public function postInfo(){
-        return $this->hasOne('App\Post');
+    public function posts(){
+        return $this->hasMany('App\Post');
     }
 }
